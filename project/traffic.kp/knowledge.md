@@ -12,16 +12,10 @@ tldr: Given the cost of the API calls, we would like to investigate the possibil
   of using machine learning to predict the efficiency of the API calls.
 thumbnail: images/output_25_0.png
 ---
-*Given a partner and a hotel, use the model to predict whether there will be reservation call for the next day. The main takeaways are as follows:*
+Given a partner and a hotel, use the model to predict whether there will be reservation call for the next day. The main takeaways are as follows:
 
  - The model metrics improves w.r.t. more features
  - The final model only blocks 4% of the reservations but block 87% of the zero reservations
- 
-*Given a partner and a hotel, use the model to predict whether there will be reservation call for the next day. The main takeaways are as follows:*
-
- - The model metrics improves w.r.t. more features
- - The final model only blocks 4% of the reservations but block 87% of the zero reservations
-
 
 ### Motivation
 
@@ -29,7 +23,8 @@ Given the cost of the API calls, we would like to investigate the possibility of
 
 ### Data
 
-*Due to the large scale of the API dataset, here we did an data undersampling for fast model iterations and better data understanding.*
+Due to the large scale of the API dataset, here we did an data undersampling for fast model iterations and better data understanding.
+
 - We pick one partner DESPEGAR.COM
 - For DESPEGAR.COM, we randomly sample 1/10 of the hotels, the number of active hotels is 28,473
 - Each instance is the daily features for each hotel, we fill all zero for API calls for missing dates
@@ -97,7 +92,8 @@ def get_preds(model_path, X_test):
 ```
 # feat0 model
 
-3 Features：
+3 Features:
+
  - list_count_sum_365d
  - avail_count_sum_365d
  - res_count_sum_365d
@@ -115,7 +111,8 @@ np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat0.txt', y_pre
 ```
 # feat1 model
 
-12 Features：
+12 Features:
+
  - list_count_sum_[365d, 30d, 7d, prev]
  - avail_count_sum_[365d, 30d, 7d, prev]
  - res_count_sum_[365d, 30d, 7d, prev]
@@ -133,7 +130,8 @@ np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat1.txt', y_pre
 ```
 # feat2 model
 
-40 Features：
+40 Features:
+
  - list_count_sum_[365d, 30d, 7d, prev]
  - avail_count_sum_[365d, 30d, 7d, prev]
  - res_count_sum_[365d, 30d, 7d, prev]
@@ -152,7 +150,8 @@ np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat2.txt', y_pre
 ```
 # feat3 model
 
-* 60 Features：
+60 Features:
+
  - list_count_sum_[365d, 30d, 7d, prev]
  - avail_count_sum_[365d, 30d, 7d, prev]
  - res_count_sum_[365d, 30d, 7d, prev]
