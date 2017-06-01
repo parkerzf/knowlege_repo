@@ -10,7 +10,7 @@ created_at: 2017-05-30 00:00:00
 updated_at: 2017-06-02 00:00:00
 tldr: Given the cost of the API calls, we would like to investigate the possibility
   of using machine learning to predict the efficiency of the API calls.
-thumbnail: images/output_26_1.png
+thumbnail: images/output_25_1.png
 ---
 Given a partner and a hotel, use the model to predict whether there will be reservation call for the next day. The main takeaways are as follows:
 
@@ -209,18 +209,18 @@ def show_metrics(y_pred, y_test):
 ```python
 show_metrics(y_pred_feat0, y_test)
 ```
+    model log loss:0.301645615138
+
+
+
+
+![png](images/output_25_1.png)
+
+
 
 ```python
 show_metrics(y_pred_feat1, y_test)
 ```
-    model log loss: 0.299786225885
-
-
-
-
-![png](images/output_26_1.png)
-
-
 
 ```python
 show_metrics(y_pred_feat2, y_test)
