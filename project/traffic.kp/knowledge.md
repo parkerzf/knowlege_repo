@@ -90,7 +90,7 @@ def get_preds(model_path, X_test):
     y_preds = gbm.predict(X_test, num_iteration=gbm.best_iteration)
     return y_preds
 ```
-# feat0 model
+## feat0 model
 
 3 Features:
 
@@ -109,7 +109,7 @@ X_test = df_test[['list_count_sum_365d', 'avail_count_sum_365d', 'res_count_sum_
 y_pred_feat0 = get_preds('/Users/fezhao/Projects/traffic_manager/data/model_feat0.pkl', X_test)
 np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat0.txt', y_pred_feat0, '%.8f')
 ```
-# feat1 model
+## feat1 model
 
 12 Features:
 
@@ -128,7 +128,7 @@ X_test = df_test.drop(['label'], axis=1)
 y_pred_feat1 = get_preds('/Users/fezhao/Projects/traffic_manager/data/model_feat1.pkl', X_test)
 np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat1.txt', y_pred_feat1, '%.8f')
 ```
-# feat2 model
+## feat2 model
 
 40 Features:
 
@@ -148,7 +148,7 @@ X_test = df_test.drop(['label'], axis=1)
 y_pred_feat2 = get_preds('/Users/fezhao/Projects/traffic_manager/data/model_feat2.pkl', X_test)
 np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat2.txt', y_pred_feat2, '%.8f')
 ```
-# feat3 model
+## feat3 model
 
 60 Features:
 
@@ -172,7 +172,7 @@ X_test = df_test.drop(['label'], axis=1)
 y_pred_feat3 = get_preds('/Users/fezhao/Projects/traffic_manager/data/model_feat3.pkl', X_test)
 np.savetxt('/Users/fezhao/Projects/traffic_manager/data/y_pred_feat3.txt', y_pred_feat3, '%.8f')
 ```
-# Analysis results
+## Analysis results
 
 
 ```python
