@@ -10,7 +10,7 @@ created_at: 2017-05-30 00:00:00
 updated_at: 2017-06-02 00:00:00
 tldr: Given the cost of the API calls, we would like to investigate the possibility
   of using machine learning to predict the efficiency of the API calls.
-thumbnail: images/output_25_0.png
+thumbnail: images/output_25_1.png
 ---
 Given a partner and a hotel, use the model to predict whether there will be reservation call for the next day. The main takeaways are as follows:
 
@@ -190,7 +190,7 @@ print 'feat3 model log loss: ', metrics.log_loss(y_test, y_pred_feat3)
 ```
     feat0 model log loss:  0.301645615138
     feat1 model log loss:  0.299786225885
-    feat2 model log loss:  0.294032894548
+    feat2 model log loss:  0.294032894584
     feat3 model log loss:  0.290106144481
 
 
@@ -200,24 +200,31 @@ def show_metrics(y_pred, y_test):
     preds = y_pred >= 0.5
     labels = y_test
     cm = metrics.confusion_matrix(labels, preds)
+    print 'model log loss:', metrics.log_loss(y_test, y_pred)
     plot_confusion_matrix(cm, classes=[0,1])
 ```
 
 ```python
 show_metrics(y_pred_feat0, y_test)
 ```
+    model log loss: 0.301645615138
 
 
-![png](images/output_25_0.png)
+
+
+![png](images/output_25_1.png)
 
 
 
 ```python
 show_metrics(y_pred_feat1, y_test)
 ```
+    model log loss: 0.299786225885
 
 
-![png](images/output_26_0.png)
+
+
+![png](images/output_26_1.png)
 
 
 
@@ -225,14 +232,10 @@ show_metrics(y_pred_feat1, y_test)
 show_metrics(y_pred_feat2, y_test)
 ```
 
-
-![png](images/output_27_0.png)
-
-
-
 ```python
 show_metrics(y_pred_feat3, y_test)
 ```
 
+```python
 
-![png](images/output_28_0.png)
+```
