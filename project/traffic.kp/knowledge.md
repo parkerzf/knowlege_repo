@@ -13,8 +13,8 @@ tldr: Given the cost of the API calls, we would like to investigate the possibil
 thumbnail: images/output_25_0.png
 ---
 *Given a partner and a hotel, use the model to predict whether there will be reservation call for the next day. The main takeaways are as follows:*
-- The model metrics improves w.r.t. more features
-- The final model only blocks 4% of the reservations but block 87% of the zero reservations
+ - The model metrics improves w.r.t. more features
+ - The final model only blocks 4% of the reservations but block 87% of the zero reservations
 
 ### Motivation
 
