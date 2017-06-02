@@ -7,7 +7,7 @@ tags:
 - data science
 - machine learning
 created_at: 2017-05-30 00:00:00
-updated_at: 2017-06-02 00:00:00
+updated_at: 2017-06-02 10:39:36.036046
 tldr: Given the cost of the API calls, we would like to investigate the possibility
   of using machine learning to predict the efficiency of the API calls.
 thumbnail: images/output_24_1.png
@@ -28,6 +28,7 @@ Due to the large scale of the API dataset, here we did an data undersampling for
 - We pick one partner DESPEGAR.COM
 - For DESPEGAR.COM, we randomly sample 1/10 of the hotels, the number of active hotels is 28,473
 - Each instance is the daily features for each hotel, we fill all zero for API calls for missing dates
+    - from 2017-01-01 to 2017-03-31, the missing date are 275,316 out of 2,562,570, about 10%
 - Historical data: from 2015-01-01 to 2017-03-31
 - Train instance data: from 2016-01-01 to 2016-12-31, them we undersample the training data to make the dataset balance regarding to the label
 - Test instance data: from 2017-01-01 to 2017-03-31
@@ -239,6 +240,62 @@ show_metrics(y_pred_feat3, y_test)
 
 ![png](images/output_27_1.png)
 
+
+
+```python
+df_2017_daily = pd.read_csv('/Users/fezhao/Projects/traffic_manager/data/df_2017_daily.csv', sep='|')
+```
+
+```python
+df_feat0 = pd.concat([df_2017_daily, pd.DataFrame(y_pred_feat0, columns=['pred'])], axis=1)
+df_feat1 = pd.concat([df_2017_daily, pd.DataFrame(y_pred_feat1, columns=['pred'])], axis=1)
+df_feat2 = pd.concat([df_2017_daily, pd.DataFrame(y_pred_feat2, columns=['pred'])], axis=1)
+df_feat3 = pd.concat([df_2017_daily, pd.DataFrame(y_pred_feat3, columns=['pred'])], axis=1)
+```
+
+```python
+print(df_feat0[df_feat0.pred<0.5].res_count.sum() * 1.0/df_feat0.res_count.sum())
+print(df_feat1[df_feat1.pred<0.5].res_count.sum() * 1.0/df_feat1.res_count.sum())
+print(df_feat2[df_feat2.pred<0.5].res_count.sum() * 1.0/df_feat2.res_count.sum())
+print(df_feat3[df_feat3.pred<0.5].res_count.sum() * 1.0/df_feat3.res_count.sum())
+```
+    0.0686577561061
+    0.0498497975532
+    0.0464103792068
+    0.0474117288519
+
+
+
+```python
+print(df_feat0[df_feat0.pred<0.5].list_count.sum() * 1.0/df_feat0.list_count.sum())
+print(df_feat1[df_feat1.pred<0.5].list_count.sum() * 1.0/df_feat1.list_count.sum())
+print(df_feat2[df_feat2.pred<0.5].list_count.sum() * 1.0/df_feat2.list_count.sum())
+print(df_feat3[df_feat3.pred<0.5].list_count.sum() * 1.0/df_feat3.list_count.sum())
+```
+    0.294349115796
+    0.316986500326
+    0.323075957939
+    0.330052404731
+
+
+
+```python
+print(df_feat0[df_feat0.pred<0.5].list_count.sum() *1.0/ df_feat0[df_feat0.pred<0.5].res_count.sum())
+print(df_feat1[df_feat1.pred<0.5].list_count.sum() *1.0/ df_feat0[df_feat1.pred<0.5].res_count.sum())
+print(df_feat2[df_feat2.pred<0.5].list_count.sum() *1.0/ df_feat0[df_feat2.pred<0.5].res_count.sum())
+print(df_feat3[df_feat3.pred<0.5].list_count.sum() *1.0/ df_feat0[df_feat3.pred<0.5].res_count.sum())
+```
+    1255607.94864
+    1862337.09782
+    2038780.4015
+    2038816.01194
+
+
+Conclusion: 
+ - The models are better than the Joe's method, if we assume that the sample performance can be generalized to the whole polulation. Joe's result is 5% res count lost w.r.t. 24% list count reducation.
+ - The feat3 model is the best since the ratio between block list_count and block reservation_count is the largest. Take feat3 model for example, that means we reduce 2,038,816 list counts while lose 1 res count. However, is it beneficial?
+ - Next use the res count as the instance weight to retrain the model
+ - Better understand the false negative (blocked res count instance)
 
 
 ```python
