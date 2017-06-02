@@ -7,7 +7,7 @@ tags:
 - data science
 - machine learning
 created_at: 2017-05-30 00:00:00
-updated_at: 2017-06-02 10:39:36.036046
+updated_at: 2017-06-02 10:40:14.757846
 tldr: Given the cost of the API calls, we would like to investigate the possibility
   of using machine learning to predict the efficiency of the API calls.
 thumbnail: images/output_24_1.png
@@ -291,7 +291,8 @@ print(df_feat3[df_feat3.pred<0.5].list_count.sum() *1.0/ df_feat0[df_feat3.pred<
     2038816.01194
 
 
-Conclusion: 
+Conclusion:
+
  - The models are better than the Joe's method, if we assume that the sample performance can be generalized to the whole polulation. Joe's result is 5% res count lost w.r.t. 24% list count reducation.
  - The feat3 model is the best since the ratio between block list_count and block reservation_count is the largest. Take feat3 model for example, that means we reduce 2,038,816 list counts while lose 1 res count. However, is it beneficial?
  - Next use the res count as the instance weight to retrain the model
